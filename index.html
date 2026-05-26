@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyecto de Capacitación · Secretaría de Posgrado · Facultad de Derecho UNNE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Google+Sans+Display:wght@400;700&family=Google+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────── */
+:root {
+  --blue:   #1A73E8;
+  --red:    #EA4335;
+  --yellow: #FBBC04;
+  --green:  #34A853;
+  --ink:    #202124;
+  --ink2:   #3C4043;
+  --ink3:   #5F6368;
+  --rule:   #DADCE0;
+  --bg:     #FFFFFF;
+  --bg2:    #F8F9FA;
+  --blue-tint:   #E8F0FE;
+  --green-tint:  #E6F4EA;
+  --yellow-tint: #FEF3D0;
+  --red-tint:    #FCE8E6;
+  --sans:    'Google Sans', sans-serif;
+  --display: 'Google Sans Display', sans-serif;
+  --mono:    'Google Sans Mono', monospace;
+  --max: 1072px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink2);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+img { display:block; max-width:100%; }
+a   { color:inherit; text-decoration:none; }
+
+/* Material Symbols */
+.ms {
+  font-family: 'Material Symbols Outlined';
+  font-weight: 300;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+  vertical-align: middle;
+}
+.ms.filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+.ms.lg { font-size: 28px; }
+.ms.xl { font-size: 40px; }
+
+/* ─── NAV ────────────────────────────────────── */
+.site-nav {
+  position: sticky; top:0; z-index:200;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  height: 64px;
+  display: flex; align-items: center;
+  padding: 0 40px; gap: 20px;
+}
+.nav-wordmark {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--display);
+  font-size: 19px; font-weight: 400;
+  color: var(--ink); flex-shrink: 0;
+  letter-spacing: -.2px;
+}
+.g-dots { display:flex; gap:2px; align-items:center; }
+.g-dots span {
+  width:7px; height:7px; border-radius:50%; display:block;
+}
+.g-dots .b { background:var(--blue); }
+.g-dots .r { background:var(--red); }
+.g-dots .y { background:var(--yellow); }
+.g-dots .g { background:var(--green); }
+.nav-sep { width:1px; height:26px; background:var(--rule); flex-shrink:0; }
+.nav-label { font-size:14px; color:var(--ink3); flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-cta {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 16px; border-radius:100px;
+  font-size:13px; font-weight:500; color:var(--blue);
+  border:1px solid var(--rule);
+  transition: background .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.nav-cta:hover { background:var(--blue-tint); border-color:#c5d8fb; }
+.nav-cta .ms { font-size:16px; }
+
+/* ─── HERO ───────────────────────────────────── */
+.page-wrap { max-width: var(--max); margin:0 auto; padding:0 40px; }
+@media (max-width:700px){ .page-wrap { padding:0 20px; } }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+  padding: 64px 0 56px;
+  border-bottom: 1px solid var(--rule);
+}
+@media (max-width:760px){
+  .hero { grid-template-columns:1fr; gap:32px; padding:36px 0; }
+  .hero-img { order:-1; }
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:600; letter-spacing:1.2px;
+  text-transform:uppercase; color:var(--blue); margin-bottom:18px;
+}
+.hero-eyebrow::before {
+  content:''; display:block; width:18px; height:2px; background:var(--blue);
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.8vw, 46px);
+  font-weight: 700; line-height:1.14; color:var(--ink);
+  letter-spacing:-.5px; margin-bottom:18px;
+}
+.hero-deck {
+  font-size:16px; line-height:1.7; color:var(--ink3); margin-bottom:28px;
+}
+.tag-row { display:flex; flex-wrap:wrap; gap:7px; }
+.tag {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 11px; border-radius:100px;
+  font-size:12px; font-weight:500;
+  border:1px solid var(--rule); background:var(--bg2); color:var(--ink3);
+}
+.tag .ms { font-size:14px; }
+.tag.b { background:var(--blue-tint);   color:var(--blue);  border-color:#c5d8fb; }
+.tag.g { background:var(--green-tint);  color:var(--green); border-color:#bde5c8; }
+.tag.y { background:var(--yellow-tint); color:#8A6700;      border-color:#fde68a; }
+.tag.r { background:var(--red-tint);    color:var(--red);   border-color:#f5c6c3; }
+
+.hero-img {
+  border-radius:16px; overflow:hidden;
+  aspect-ratio:16/10;
+  background:var(--bg2);
+}
+.hero-img img { width:100%; height:100%; object-fit:cover; }
+
+/* ─── CONTENT GRID ───────────────────────────── */
+.content-grid {
+  display:grid;
+  grid-template-columns: 1fr 304px;
+  gap:56px;
+  padding: 56px 0 80px;
+  align-items: start;
+}
+@media (max-width:900px){
+  .content-grid { grid-template-columns:1fr; }
+  .sidebar { display:none; }
+}
+
+/* ─── ARTICLE ────────────────────────────────── */
+.sec {
+  padding:52px 0;
+  border-bottom:1px solid var(--rule);
+}
+.sec:last-child { border-bottom:none; }
+
+.kicker {
+  display:inline-flex; align-items:center; gap:9px;
+  font-size:11px; font-weight:600; letter-spacing:1.3px;
+  text-transform:uppercase; color:var(--ink3); margin-bottom:14px;
+}
+.kicker-num {
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:#fff;
+  font-family: var(--mono);
+}
+
+.sec h2 {
+  font-family: var(--display);
+  font-size: clamp(21px,2.8vw,29px);
+  font-weight:700; line-height:1.2; color:var(--ink);
+  letter-spacing:-.3px; margin-bottom:18px;
+}
+.body { font-size:16px; line-height:1.75; color:var(--ink2); margin-bottom:18px; }
+
+.pull {
+  border-left:4px solid var(--blue);
+  background:var(--blue-tint);
+  border-radius:0 8px 8px 0;
+  padding:16px 22px; margin:28px 0;
+}
+.pull p {
+  font-family:var(--display);
+  font-size:18px; font-style:italic;
+  line-height:1.5; color:var(--ink);
+}
+
+/* ─── ARTICLE IMAGES ─────────────────────────── */
+.art-img {
+  margin:28px 0;
+  border-radius:12px; overflow:hidden;
+  border:1px solid var(--rule);
+}
+.art-img img { width:100%; height:260px; object-fit:cover; display:block; }
+.art-img figcaption {
+  padding:10px 16px;
+  font-size:12px; color:var(--ink3);
+  background:var(--bg2); border-top:1px solid var(--rule);
+  display:flex; align-items:center; gap:6px;
+}
+.art-img figcaption .ms { font-size:14px; }
+
+/* ─── CARDS 3 ────────────────────────────────── */
+.cards3 {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:14px; margin:24px 0;
+}
+@media (max-width:640px){ .cards3 { grid-template-columns:1fr; } }
+.mcard {
+  border:1px solid var(--rule); border-radius:12px; padding:20px 18px;
+  background:var(--bg); transition:box-shadow .2s, transform .2s;
+}
+.mcard:hover { box-shadow:0 4px 16px rgba(60,64,67,.14); transform:translateY(-2px); }
+.mcard-icon {
+  width:40px; height:40px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:12px;
+}
+.mcard-icon .ms { font-size:22px; }
+.mcard h3 { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:5px; }
+.mcard p  { font-size:13px; color:var(--ink3); line-height:1.55; }
+
+/* ─── TIMELINE / WEEKS ───────────────────────── */
+.timeline { margin:24px 0; display:flex; flex-direction:column; gap:10px; }
+
+.tw {
+  border:1px solid var(--rule); border-radius:12px; overflow:hidden;
+  transition:box-shadow .2s;
+}
+.tw:hover { box-shadow:0 2px 8px rgba(60,64,67,.11); }
+
+.tw-hd {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 18px; cursor:pointer; user-select:none;
+  background:var(--bg);
+}
+.tw-stripe { width:4px; height:34px; border-radius:2px; flex-shrink:0; }
+.tw:nth-child(1) .tw-stripe { background:var(--blue); }
+.tw:nth-child(2) .tw-stripe { background:var(--green); }
+.tw:nth-child(3) .tw-stripe { background:var(--yellow); }
+
+.tw-info { flex:1; min-width:0; }
+.tw-lbl {
+  font-family:var(--mono);
+  font-size:10px; font-weight:600; letter-spacing:1.2px;
+  text-transform:uppercase; margin-bottom:2px;
+}
+.tw:nth-child(1) .tw-lbl { color:var(--blue); }
+.tw:nth-child(2) .tw-lbl { color:var(--green); }
+.tw:nth-child(3) .tw-lbl { color:#8A6700; }
+.tw-name { font-size:14px; font-weight:600; color:var(--ink); }
+.tw-date {
+  font-size:12px; color:var(--ink3);
+  background:var(--bg2); border:1px solid var(--rule);
+  padding:3px 10px; border-radius:100px;
+  white-space:nowrap; flex-shrink:0;
+  display:flex; align-items:center; gap:4px;
+}
+.tw-date .ms { font-size:13px; }
+.tw-chev { flex-shrink:0; transition:transform .25s; }
+.tw-chev .ms { font-size:18px; color:var(--ink3); }
+.tw.open .tw-chev { transform:rotate(180deg); }
+
+.tw-body {
+  max-height:0; overflow:hidden;
+  transition:max-height .4s cubic-bezier(0,1,.4,1);
+}
+.tw.open .tw-body { max-height:600px; border-top:1px solid var(--rule); }
+
+.tw-items { padding:14px 18px; display:flex; flex-direction:column; gap:8px; }
+.tw-item {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 13px; background:var(--bg2);
+  border-radius:8px; font-size:14px; line-height:1.55; color:var(--ink2);
+}
+.tw-item .ms { font-size:17px; margin-top:1px; flex-shrink:0; }
+.tw:nth-child(1) .tw-item .ms { color:var(--blue); }
+.tw:nth-child(2) .tw-item .ms { color:var(--green); }
+.tw:nth-child(3) .tw-item .ms { color:#8A6700; }
+
+/* ─── PARALLAX STRIP ─────────────────────────── */
+.pstrip {
+  position:relative; overflow:hidden;
+  height:300px; border-radius:16px; margin:36px 0;
+}
+.pstrip-img {
+  position:absolute; width:100%; height:140%;
+  top:-20%; left:0; right:0;
+  object-fit:cover; will-change:transform;
+}
+.pstrip-overlay {
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(to right, rgba(26,115,232,.65) 0%, rgba(26,115,232,.2) 55%, transparent 80%);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:40px 48px;
+}
+.pstrip-overlay h3 {
+  font-family:var(--display);
+  font-size:clamp(18px,2.5vw,26px); font-weight:700; color:#fff;
+  line-height:1.2; margin-bottom:8px;
+  text-shadow:0 1px 4px rgba(0,0,0,.25);
+}
+.pstrip-overlay p {
+  font-size:14px; color:rgba(255,255,255,.88); max-width:360px;
+  line-height:1.6; text-shadow:0 1px 3px rgba(0,0,0,.2);
+}
+
+/* ─── BENEFITS GRID ──────────────────────────── */
+.ben-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:14px; margin:24px 0;
+}
+@media (max-width:600px){ .ben-grid { grid-template-columns:1fr; } }
+.ben-grid .ben:first-child { grid-column:1/-1; }
+.ben {
+  border:1px solid var(--rule); border-radius:12px; padding:20px 18px;
+  display:flex; gap:14px; align-items:flex-start;
+  background:var(--bg); transition:box-shadow .2s;
+}
+.ben:hover { box-shadow:0 2px 8px rgba(60,64,67,.1); }
+.ben-ico {
+  width:38px; height:38px; border-radius:9px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.ben-ico .ms { font-size:20px; }
+.ben:nth-child(1) .ben-ico { background:var(--blue-tint);   }
+.ben:nth-child(1) .ben-ico .ms { color:var(--blue); }
+.ben:nth-child(2) .ben-ico { background:var(--green-tint);  }
+.ben:nth-child(2) .ben-ico .ms { color:var(--green); }
+.ben:nth-child(3) .ben-ico { background:var(--yellow-tint); }
+.ben:nth-child(3) .ben-ico .ms { color:#8A6700; }
+.ben:nth-child(4) .ben-ico { background:var(--red-tint);    }
+.ben:nth-child(4) .ben-ico .ms { color:var(--red); }
+.ben:nth-child(5) .ben-ico { background:var(--blue-tint);   }
+.ben:nth-child(5) .ben-ico .ms { color:var(--blue); }
+.ben h3 { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:4px; }
+.ben p  { font-size:13px; color:var(--ink3); line-height:1.58; }
+
+/* ─── PHASE STRIP ────────────────────────────── */
+.phases {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--rule); border-radius:12px; overflow:hidden;
+  margin:24px 0;
+}
+@media (max-width:600px){ .phases { grid-template-columns:1fr; } }
+.phase { padding:22px 18px; border-right:1px solid var(--rule); }
+.phase:last-child { border-right:none; }
+.phase-ico {
+  width:36px; height:36px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:12px;
+}
+.phase-ico .ms { font-size:19px; }
+.phase:nth-child(1) .phase-ico { background:var(--blue-tint); }
+.phase:nth-child(1) .phase-ico .ms { color:var(--blue); }
+.phase:nth-child(1) .phase-lbl { color:var(--blue); }
+.phase:nth-child(2) .phase-ico { background:var(--green-tint); }
+.phase:nth-child(2) .phase-ico .ms { color:var(--green); }
+.phase:nth-child(2) .phase-lbl { color:var(--green); }
+.phase:nth-child(3) .phase-ico { background:var(--yellow-tint); }
+.phase:nth-child(3) .phase-ico .ms { color:#8A6700; }
+.phase:nth-child(3) .phase-lbl { color:#8A6700; }
+.phase-lbl { font-size:10px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; margin-bottom:6px; }
+.phase h3 { font-size:14px; font-weight:600; color:var(--ink); margin-bottom:5px; }
+.phase p  { font-size:13px; color:var(--ink3); line-height:1.55; }
+
+/* ─── CHIP ROW ───────────────────────────────── */
+.chips { display:flex; flex-wrap:wrap; gap:7px; margin:16px 0; }
+.chip {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 11px; border-radius:100px;
+  font-size:12px; color:var(--ink3);
+  border:1px solid var(--rule); background:var(--bg);
+}
+.chip .ms { font-size:14px; }
+.chip.b { color:var(--blue);  background:var(--blue-tint);   border-color:#c5d8fb; }
+.chip.g { color:var(--green); background:var(--green-tint);  border-color:#bde5c8; }
+.chip.y { color:#8A6700;      background:var(--yellow-tint); border-color:#fde68a; }
+.chip.r { color:var(--red);   background:var(--red-tint);    border-color:#f5c6c3; }
+
+.conclusion {
+  background:var(--bg2); border:1px solid var(--rule);
+  border-radius:12px; padding:26px 28px; margin-top:24px;
+  display:flex; gap:14px;
+}
+.conclusion .ms { font-size:28px; color:var(--blue); opacity:.35; margin-top:2px; flex-shrink:0; }
+.conclusion p { font-size:15px; line-height:1.75; color:var(--ink2); }
+
+/* ─── SIDEBAR ────────────────────────────────── */
+.sidebar { position:sticky; top:80px; align-self:start; }
+.sb-block { margin-bottom:36px; }
+.sb-block h4 {
+  font-size:11px; font-weight:600; letter-spacing:1.4px;
+  text-transform:uppercase; color:var(--ink3);
+  margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--rule);
+}
+.sb-toc a {
+  display:flex; align-items:center; gap:8px;
+  padding:7px 0; font-size:13px; color:var(--ink3);
+  border-bottom:1px solid var(--bg2); transition:color .15s;
+}
+.sb-toc a .ms { font-size:15px; transition:color .15s; }
+.sb-toc a:hover { color:var(--blue); }
+.sb-toc a:hover .ms { color:var(--blue); }
+.sb-toc a.active { color:var(--blue); font-weight:500; }
+.sb-toc a.active .ms { color:var(--blue); }
+
+.info-tbl { width:100%; border-collapse:collapse; }
+.info-tbl td { font-size:13px; padding:7px 0; border-bottom:1px solid var(--bg2); vertical-align:top; }
+.info-tbl td:first-child { color:var(--ink3); width:45%; display:flex; align-items:center; gap:5px; }
+.info-tbl td:first-child .ms { font-size:15px; }
+.info-tbl td:last-child  { color:var(--ink); font-weight:500; }
+
+.prog-pill {
+  display:flex; align-items:center; gap:9px;
+  padding:9px 12px; border-radius:9px;
+  margin-bottom:7px; font-size:13px;
+  background:var(--bg2); border:1px solid var(--rule);
+  transition:background .15s;
+}
+.prog-pill:hover { background:var(--blue-tint); border-color:#c5d8fb; }
+.prog-pill .ms { font-size:17px; }
+.prog-pill .p-week { font-size:11px; color:var(--ink3); margin-left:auto; font-family:var(--mono); }
+
+/* ─── FOOTER ─────────────────────────────────── */
+.site-footer {
+  border-top:1px solid var(--rule); padding:28px 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:12px;
+  max-width:var(--max); margin:0 auto;
+}
+.ft-brand { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--ink3); }
+.ft-copy  { font-size:12px; color:var(--ink3); }
+
+/* ─── SCROLL REVEAL ──────────────────────────── */
+.rv { opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s ease; }
+.rv.in { opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="#top" class="nav-wordmark">
+    <div class="g-dots"><span class="b"></span><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    Secretaría de Posgrado · Facultad de Derecho UNNE
+  </a>
+  <div class="nav-sep"></div>
+  <span class="nav-label">Proyecto de Capacitación · Secretaría de Posgrado · Facultad de Derecho UNNE</span>
+  <a href="#programa" class="nav-cta"><span class="ms">calendar_today</span>Ver programa</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-wrap">
+<header class="hero" id="top">
+  <div>
+    <div class="hero-eyebrow">Secretaría de Posgrado · Facultad de Derecho UNNE</div>
+    <h1>Modernización de la Gestión Administrativa</h1>
+    <p class="hero-deck">Propuesta pedagógica para la incorporación práctica de herramientas digitales, criterios comunes de organización documental, trazabilidad operativa y asistencia con inteligencia artificial aplicada a tareas de gestión.</p>
+    <div class="tag-row">
+      <span class="tag b"><span class="ms">workspace_premium</span>Google Workspace</span>
+      <span class="tag g"><span class="ms">psychology</span>IA Generativa</span>
+      <span class="tag y"><span class="ms">calendar_month</span>3 semanas · Junio 2026</span>
+      <span class="tag"><span class="ms">location_on</span>Corrientes, Argentina</span>
+    </div>
+  </div>
+  <figure class="hero-img">
+    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80&fit=crop"
+         alt="Equipo de trabajo colaborando con herramientas digitales en oficina moderna">
+  </figure>
+</header>
+
+<!-- CONTENT GRID -->
+<div class="content-grid">
+<main>
+
+  <!-- I. PROPÓSITO -->
+  <section class="sec rv" id="proposito">
+    <div class="kicker">
+      <span class="kicker-num" style="background:var(--blue)">✦</span>
+      Propósito institucional
+    </div>
+    <h2>Fortalecer las capacidades del personal administrativo</h2>
+    <p class="body">Fortalecer las capacidades administrativas del personal mediante la incorporación práctica de herramientas digitales, criterios comunes de organización documental, trazabilidad operativa y asistencia con inteligencia artificial aplicada a tareas de gestión.</p>
+    <div class="pull">
+      <p>"Hacia la estandarización y eficiencia de los procesos internos de la Secretaría de Posgrado."</p>
+    </div>
+    <figure class="art-img">
+      <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=900&q=80&fit=crop"
+           alt="Monitor mostrando interfaz de Google Workspace con aplicaciones activas en escritorio de trabajo">
+      <figcaption><span class="ms filled">info</span>Personal de la Secretaría de Posgrado trabajando con Google Workspace.</figcaption>
+    </figure>
+  </section>
+
+  <!-- II. METODOLOGÍA -->
+  <section class="sec rv" id="metodologia">
+    <div class="kicker">
+      <span class="kicker-num" style="background:var(--green)">I</span>
+      Metodología de trabajo
+    </div>
+    <h2>Taller de Inmersión Práctica</h2>
+    <p class="body">La capacitación se desarrollará bajo la modalidad de Taller de Inmersión Práctica. Un tutor guiará al personal en la resolución de situaciones administrativas reales, procurando que las herramientas digitales se integren a la dinámica cotidiana de la oficina y no operen como instrumentos externos o meramente accesorios.</p>
+    <p class="body">El enfoque pedagógico prioriza el aprendizaje situado: cada módulo se vinculará con tareas efectivas de la Secretaría de Posgrado, tales como gestión documental, seguimiento de expedientes, organización de clases y defensas, comunicación institucional y archivo digital.</p>
+
+    <figure class="art-img">
+      <img src="https://images.unsplash.com/photo-1552581234-26160f608093?w=900&q=80&fit=crop"
+           alt="Taller de capacitación en habilidades digitales con equipo de trabajo">
+      <figcaption><span class="ms filled">info</span>Modalidad de taller presencial con resolución de casos administrativos reales.</figcaption>
+    </figure>
+
+    <div class="cards3">
+      <div class="mcard">
+        <div class="mcard-icon" style="background:var(--blue-tint)"><span class="ms" style="color:var(--blue)">groups</span></div>
+        <h3>Modalidad</h3>
+        <p>Taller práctico con acompañamiento tutorial y resolución de casos administrativos reales.</p>
+      </div>
+      <div class="mcard">
+        <div class="mcard-icon" style="background:var(--yellow-tint)"><span class="ms" style="color:#8A6700">date_range</span></div>
+        <h3>Duración</h3>
+        <p>Tres semanas de trabajo progresivo, organizadas por ejes funcionales.</p>
+      </div>
+      <div class="mcard">
+        <div class="mcard-icon" style="background:var(--green-tint)"><span class="ms" style="color:var(--green)">task_alt</span></div>
+        <h3>Resultado esperado</h3>
+        <p>Incorporación operativa de herramientas digitales a los circuitos internos de gestión.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- III. PROGRAMA -->
+  <section class="sec rv" id="programa">
+    <div class="kicker">
+      <span class="kicker-num" style="background:#8A6700">II</span>
+      Programa de trabajo
+    </div>
+    <h2>Tres semanas de progresión funcional</h2>
+    <p class="body">El programa se estructura en tres semanas, con una progresión que parte del ordenamiento de la información institucional, avanza hacia la gestión colaborativa de tareas y culmina con el uso de herramientas de virtualidad e inteligencia artificial aplicada a la administración.</p>
+
+    <div class="timeline">
+
+      <div class="tw open" id="w1">
+        <div class="tw-hd" onclick="tog('w1')">
+          <div class="tw-stripe"></div>
+          <div class="tw-info">
+            <div class="tw-lbl">Semana 1</div>
+            <div class="tw-name">Google Workspace y Gobernanza de datos mediante Google Drive</div>
+          </div>
+          <div class="tw-date"><span class="ms">calendar_today</span>Viernes 5 de junio · 14:00 hs.</div>
+          <div class="tw-chev"><span class="ms">expand_more</span></div>
+        </div>
+        <div class="tw-body">
+          <div class="tw-items">
+            <div class="tw-item"><span class="ms filled">workspace_premium</span>Presentación del ecosistema Google Workspace y su integración con IA generativa.</div>
+            <div class="tw-item"><span class="ms filled">psychology</span>Fluidez en la inteligencia artificial. Formas de interacción con la IA.</div>
+            <div class="tw-item"><span class="ms filled">cloud_upload</span>Migración asistida de archivos locales a Unidades Compartidas de Drive. Principios de organización y jerarquización de documentos en carpetas.</div>
+            <div class="tw-item"><span class="ms filled">sell</span>Estandarización de nomenclatura para resoluciones, actas y expedientes. Búsqueda avanzada de documentos.</div>
+          </div>
+          <figure class="art-img" style="margin:0 18px 16px">
+            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=900&q=80&fit=crop"
+                 alt="Pantalla mostrando carpetas y documentos organizados en Google Drive con estructura jerárquica">
+            <figcaption><span class="ms filled">info</span>Organización de documentos institucionales en Google Drive con nomenclatura estandarizada.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="tw" id="w2">
+        <div class="tw-hd" onclick="tog('w2')">
+          <div class="tw-stripe"></div>
+          <div class="tw-info">
+            <div class="tw-lbl">Semana 2</div>
+            <div class="tw-name">Flujos Colaborativos y Seguimiento de Tareas</div>
+          </div>
+          <div class="tw-date"><span class="ms">calendar_today</span>Viernes 12 de junio · 14:00 hs.</div>
+          <div class="tw-chev"><span class="ms">expand_more</span></div>
+        </div>
+        <div class="tw-body">
+          <div class="tw-items">
+            <div class="tw-item"><span class="ms filled">mail</span>Optimización del uso de Gmail: atajos y plantillas de mail y prompts. Gestión de etiquetas. Vinculación con Google Keep y Tasks para trazabilidad de trámites internos.</div>
+            <div class="tw-item"><span class="ms filled">edit_document</span>Redacción y edición colaborativa en Google Docs.</div>
+            <div class="tw-item"><span class="ms filled">table_chart</span>Uso de Google Sheets para control de cohortes y aranceles en tiempo real.</div>
+          </div>
+          <figure class="art-img" style="margin:0 18px 16px">
+            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=80&fit=crop"
+                 alt="Equipo colaborando con Google Workspace Gmail y Calendar en laptops">
+            <figcaption><span class="ms filled">info</span>Flujos de trabajo colaborativos mediante Gmail, Docs y Sheets.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="tw" id="w3">
+        <div class="tw-hd" onclick="tog('w3')">
+          <div class="tw-stripe"></div>
+          <div class="tw-info">
+            <div class="tw-lbl">Semana 3</div>
+            <div class="tw-name">Virtualidad y Soporte con IA Administrativa</div>
+          </div>
+          <div class="tw-date"><span class="ms">calendar_today</span>Viernes 19 de junio · 14:00 hs.</div>
+          <div class="tw-chev"><span class="ms">expand_more</span></div>
+        </div>
+        <div class="tw-body">
+          <div class="tw-items">
+            <div class="tw-item"><span class="ms filled">lightbulb</span>Habilidades de descripción, discernimiento y diligencia con la IA.</div>
+            <div class="tw-item"><span class="ms filled">auto_awesome</span>Introducción a Gemini como asistente administrativo: redacción de borradores, síntesis de textos y gestión de correos frecuentes.</div>
+            <div class="tw-item"><span class="ms filled">diamond</span>Diseño y utilización de Gemas en Gemini. Base de datos interactiva con uso de NotebookLM como fuente de consulta.</div>
+            <div class="tw-item"><span class="ms filled">videocam</span>Gestión profesional de encuentros en Zoom Education y agenda en Calendar. Configuración de grabaciones y archivo digital de clases y defensas.</div>
+          </div>
+          <figure class="art-img" style="margin:0 18px 16px">
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80&fit=crop"
+                 alt="Interfaz de Gemini IA asistente administrativo Google">
+            <figcaption><span class="ms filled">info</span>Gemini como asistente administrativo para redacción y gestión de comunicaciones.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARALLAX STRIP -->
+  <div class="pstrip rv" id="pstrip">
+    <img class="pstrip-img" id="pimg"
+         src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1400&q=80&fit=crop"
+         alt="Gestión digital colaborativa en entorno universitario">
+    <div class="pstrip-overlay">
+      <h3>Aprendizaje situado en la práctica real</h3>
+      <p>Cada módulo se vincula con tareas efectivas de la Secretaría de Posgrado.</p>
+    </div>
+  </div>
+
+  <!-- IV. BENEFICIOS -->
+  <section class="sec rv" id="beneficios">
+    <div class="kicker">
+      <span class="kicker-num" style="background:var(--red)">III</span>
+      Beneficios esperados
+    </div>
+    <h2>Mejoras concretas en la gestión administrativa</h2>
+    <p class="body">La implementación del taller permitirá traducir la capacitación tecnológica en mejoras concretas de la gestión administrativa. Los beneficios esperados se orientan a robustecer la trazabilidad, la seguridad documental y la disponibilidad de la información institucional.</p>
+
+    <div class="ben-grid">
+      <div class="ben">
+        <div class="ben-ico"><span class="ms filled">track_changes</span></div>
+        <div>
+          <h3>Trazabilidad operativa</h3>
+          <p>Conocimiento preciso de la edición, circulación y estado de cada documento dentro del flujo administrativo.</p>
+        </div>
+      </div>
+      <div class="ben">
+        <div class="ben-ico"><span class="ms filled">security</span></div>
+        <div>
+          <h3>Seguridad institucional</h3>
+          <p>Reducción del riesgo de pérdida de datos por fallas de hardware local o dispersión de archivos en dispositivos personales.</p>
+        </div>
+      </div>
+      <div class="ben">
+        <div class="ben-ico"><span class="ms filled">cloud_done</span></div>
+        <div>
+          <h3>Disponibilidad</h3>
+          <p>Acceso seguro a la documentación desde cualquier dispositivo institucional, con permisos diferenciados y criterios comunes de archivo.</p>
+        </div>
+      </div>
+      <div class="ben">
+        <div class="ben-ico"><span class="ms filled">rule_folder</span></div>
+        <div>
+          <h3>Estandarización</h3>
+          <p>Unificación de nomenclaturas, soportes, carpetas y criterios de resguardo documental.</p>
+        </div>
+      </div>
+      <div class="ben">
+        <div class="ben-ico"><span class="ms filled">electric_bolt</span></div>
+        <div>
+          <h3>Eficiencia comunicacional</h3>
+          <p>Mejora de la coordinación interna mediante tareas asignadas, calendarios compartidos y registro de avances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V. IMPLEMENTACIÓN -->
+  <section class="sec rv" id="implementacion">
+    <div class="kicker">
+      <span class="kicker-num" style="background:var(--blue)">IV</span>
+      Criterios de implementación y seguimiento
+    </div>
+    <h2>Instancias para garantizar efectos sostenibles</h2>
+    <p class="body">Para asegurar que la capacitación produzca efectos sostenibles, se recomienda acompañar el taller con instancias breves de seguimiento posterior. Estas instancias permitirán verificar la utilización efectiva de las herramientas, corregir desvíos y consolidar rutinas comunes de trabajo.</p>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-ico"><span class="ms filled">manage_search</span></div>
+        <div class="phase-lbl">Antes del taller</div>
+        <h3>Diagnóstico inicial</h3>
+        <p>Relevamiento de archivos, circuitos y dificultades frecuentes de gestión.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-ico"><span class="ms filled">construction</span></div>
+        <div class="phase-lbl">Durante el taller</div>
+        <h3>Práctica real</h3>
+        <p>Aplicación práctica sobre documentos, planillas, calendarios y comunicaciones reales.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-ico"><span class="ms filled">verified</span></div>
+        <div class="phase-lbl">Después del taller</div>
+        <h3>Consolidación</h3>
+        <p>Control de adopción de criterios comunes y asistencia puntual ante obstáculos operativos.</p>
+      </div>
+    </div>
+
+    <p class="body" style="margin-top:8px;"><strong>Indicadores de éxito:</strong></p>
+    <div class="chips">
+      <span class="chip b"><span class="ms">folder_shared</span>Documentos en Drive compartido</span>
+      <span class="chip g"><span class="ms">label</span>Nomenclatura común de archivos</span>
+      <span class="chip y"><span class="ms">event_available</span>Calendarios actualizados</span>
+      <span class="chip r"><span class="ms">timer</span>Menor tiempo de búsqueda</span>
+      <span class="chip b"><span class="ms">edit_note</span>Redacción colaborativa activa</span>
+      <span class="chip g"><span class="ms">reply</span>Respuesta acelerada a consultas</span>
+      <span class="chip"><span class="ms">trending_down</span>Menos prácticas informales</span>
+    </div>
+
+    <div class="conclusion">
+      <span class="ms filled xl">format_quote</span>
+      <p>La propuesta se concibe como una acción de fortalecimiento institucional de baja complejidad técnica inicial, pero de <strong>alto impacto organizacional</strong>, en tanto contribuye a ordenar información, profesionalizar rutinas administrativas y disminuir la dependencia de prácticas informales o exclusivamente individuales.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-block">
+    <h4>Contenido</h4>
+    <nav class="sb-toc">
+      <a href="#proposito"      data-s="proposito">      <span class="ms">flag</span>Propósito institucional</a>
+      <a href="#metodologia"    data-s="metodologia">    <span class="ms">school</span>Metodología</a>
+      <a href="#programa"       data-s="programa">       <span class="ms">view_timeline</span>Programa de trabajo</a>
+      <a href="#beneficios"     data-s="beneficios">     <span class="ms">stars</span>Beneficios esperados</a>
+      <a href="#implementacion" data-s="implementacion"> <span class="ms">checklist</span>Implementación</a>
+    </nav>
+  </div>
+
+  <div class="sb-block">
+    <h4>Ficha técnica</h4>
+    <table class="info-tbl">
+      <tr>
+        <td><span class="ms">description</span>Documento</td>
+        <td>Proyecto de Capacitación</td>
+      </tr>
+      <tr>
+        <td><span class="ms">calendar_month</span>Año</td>
+        <td>2026</td>
+      </tr>
+      <tr>
+        <td><span class="ms">apartment</span>Área</td>
+        <td>Secretaría de Posgrado</td>
+      </tr>
+      <tr>
+        <td><span class="ms">location_on</span>Lugar</td>
+        <td>Corrientes, Argentina</td>
+      </tr>
+      <tr>
+        <td><span class="ms">schedule</span>Duración</td>
+        <td>3 semanas</td>
+      </tr>
+      <tr>
+        <td><span class="ms">co_present</span>Formato</td>
+        <td>Taller presencial</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="sb-block">
+    <h4>Módulos</h4>
+    <div class="prog-pill">
+      <span class="ms" style="color:var(--blue)">workspace_premium</span>
+      Google Workspace &amp; Drive
+      <span class="p-week">Sem. 1</span>
+    </div>
+    <div class="prog-pill">
+      <span class="ms" style="color:var(--green)">hub</span>
+      Flujos colaborativos
+      <span class="p-week">Sem. 2</span>
+    </div>
+    <div class="prog-pill">
+      <span class="ms" style="color:#8A6700">auto_awesome</span>
+      IA administrativa
+      <span class="p-week">Sem. 3</span>
+    </div>
+  </div>
+</aside>
+
+</div><!-- /content-grid -->
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="site-footer">
+    <div class="ft-brand">
+      <div class="g-dots"><span class="b"></span><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      Facultad de Derecho y Ciencias Sociales y Políticas · UNNE
+    </div>
+    <span class="ft-copy">Secretaría de Posgrado · Facultad de Derecho UNNE · 2026</span>
+  </div>
+</footer>
+
+<script>
+// Accordion
+function tog(id){
+  document.getElementById(id).classList.toggle('open');
+}
+
+// Scroll reveal
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// Parallax strip
+const ps = document.getElementById('pstrip');
+const pi = document.getElementById('pimg');
+let rf = null;
+window.addEventListener('scroll', () => {
+  if(rf) return;
+  rf = requestAnimationFrame(() => {
+    if(ps && pi){
+      const r = ps.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if(r.bottom > 0 && r.top < vh){
+        const p = (vh - r.top) / (vh + r.height);
+        pi.style.transform = `translateY(${(p - 0.5) * 70}px)`;
+      }
+    }
+    rf = null;
+  });
+}, { passive: true });
+
+// Active TOC
+const secs = ['proposito','metodologia','programa','beneficios','implementacion'];
+const links = document.querySelectorAll('.sb-toc a');
+const secObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting){
+      links.forEach(a => a.classList.toggle('active', a.dataset.s === e.target.id));
+    }
+  });
+}, { rootMargin: '-25% 0px -65% 0px' });
+secs.forEach(id => { const el = document.getElementById(id); if(el) secObs.observe(el); });
+</script>
+</body>
+</html>
