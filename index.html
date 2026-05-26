@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Proyecto de Capacitación · Secretaría de Posgrado · Facultad de Derecho UNNE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Google+Sans+Display:wght@400;700&family=Google+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -455,6 +455,163 @@ a   { color:inherit; text-decoration:none; }
 /* ─── SCROLL REVEAL ──────────────────────────── */
 .rv { opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s ease; }
 .rv.in { opacity:1; transform:none; }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — MOBILE FIRST
+   Breakpoints: 480px (xs), 640px (sm), 768px (md)
+═══════════════════════════════════════════════ */
+
+/* ── NAV mobile ── */
+@media (max-width: 640px) {
+  .site-nav {
+    padding: 0 16px;
+    gap: 10px;
+    height: 56px;
+  }
+  .nav-wordmark {
+    font-size: 13px;
+    gap: 7px;
+  }
+  .nav-sep,
+  .nav-label { display: none; }
+  .nav-cta {
+    padding: 6px 12px;
+    font-size: 12px;
+    margin-left: auto;
+  }
+  .nav-cta span.ms { display: none; }
+}
+
+/* ── PAGE WRAP ── */
+@media (max-width: 480px) {
+  .page-wrap { padding: 0 16px; }
+}
+
+/* ── HERO ── */
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 0 28px;
+  }
+  .hero-img { order: -1; border-radius: 12px; aspect-ratio: 16/9; }
+  .hero h1  { font-size: clamp(24px, 7vw, 36px); margin-bottom: 14px; }
+  .hero-deck { font-size: 15px; margin-bottom: 20px; }
+  .hero-eyebrow { font-size: 11px; margin-bottom: 14px; }
+  .tag-row { gap: 6px; }
+  .tag { font-size: 11px; padding: 3px 9px; }
+}
+
+/* ── CONTENT GRID ── */
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0 0 48px;
+  }
+  .sidebar { display: none; }
+}
+
+/* ── SECTION ── */
+@media (max-width: 640px) {
+  .sec { padding: 36px 0; }
+  .sec h2 { font-size: clamp(18px, 5.5vw, 24px); margin-bottom: 14px; }
+  .body  { font-size: 15px; }
+  .kicker { font-size: 10px; margin-bottom: 10px; }
+  .pull { padding: 13px 16px; margin: 20px 0; }
+  .pull p { font-size: 16px; }
+}
+
+/* ── ARTICLE IMAGES ── */
+@media (max-width: 640px) {
+  .art-img { margin: 20px 0; border-radius: 10px; }
+  .art-img img { height: 200px; }
+  .art-img figcaption { font-size: 11px; padding: 8px 12px; }
+}
+
+/* ── CARDS 3 ── */
+@media (max-width: 640px) {
+  .cards3 { grid-template-columns: 1fr; gap: 10px; margin: 16px 0; }
+  .mcard  { padding: 16px 14px; }
+  .mcard-icon { width: 36px; height: 36px; }
+}
+
+/* ── TIMELINE WEEKS ── */
+@media (max-width: 640px) {
+  .timeline { gap: 8px; }
+  .tw-hd  { padding: 12px 14px; gap: 10px; flex-wrap: wrap; }
+  .tw-stripe { height: 28px; }
+  .tw-name  { font-size: 13px; }
+  .tw-lbl   { font-size: 9px; }
+  .tw-date  { display: none; }   /* shown inside body on mobile */
+  .tw-chev .ms { font-size: 16px; }
+  .tw-items { padding: 12px 14px; gap: 7px; }
+  .tw-item  { padding: 9px 11px; font-size: 13px; gap: 8px; }
+  .tw-item .ms { font-size: 15px; }
+  /* Show date inside body */
+  .tw-body-date {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--ink3);
+    padding: 8px 14px 0;
+  }
+  /* Inner images */
+  .tw .art-img { margin: 0 14px 12px; }
+  .tw .art-img img { height: 160px; }
+}
+
+/* ── PARALLAX STRIP ── */
+@media (max-width: 640px) {
+  .pstrip { height: 200px; border-radius: 12px; margin: 24px 0; }
+  .pstrip-overlay { padding: 24px 20px; }
+  .pstrip-overlay h3 { font-size: 16px; }
+  .pstrip-overlay p  { font-size: 13px; }
+}
+
+/* ── BENEFITS GRID ── */
+@media (max-width: 600px) {
+  .ben-grid { grid-template-columns: 1fr; gap: 10px; margin: 16px 0; }
+  .ben-grid .ben:first-child { grid-column: auto; }
+  .ben  { padding: 14px 13px; gap: 12px; }
+  .ben-ico { width: 34px; height: 34px; border-radius: 8px; }
+  .ben-ico .ms { font-size: 17px; }
+  .ben h3 { font-size: 13px; }
+  .ben p  { font-size: 12px; }
+}
+
+/* ── PHASE STRIP ── */
+@media (max-width: 600px) {
+  .phases { grid-template-columns: 1fr; }
+  .phase { border-right: none; border-bottom: 1px solid var(--rule); padding: 16px 16px; }
+  .phase:last-child { border-bottom: none; }
+  .phase-ico { width: 32px; height: 32px; border-radius: 7px; margin-bottom: 8px; }
+  .phase-ico .ms { font-size: 17px; }
+}
+
+/* ── CHIP ROW ── */
+@media (max-width: 640px) {
+  .chips { gap: 6px; margin: 12px 0; }
+  .chip { font-size: 11px; padding: 4px 9px; }
+  .chip .ms { font-size: 12px; }
+}
+
+/* ── CONCLUSION ── */
+@media (max-width: 640px) {
+  .conclusion { padding: 18px 16px; gap: 10px; }
+  .conclusion .ms { font-size: 22px; }
+  .conclusion p { font-size: 14px; }
+}
+
+/* ── FOOTER ── */
+@media (max-width: 640px) {
+  .site-footer {
+    padding: 20px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .ft-brand { font-size: 12px; }
+  .ft-copy  { font-size: 11px; }
+}
 </style>
 </head>
 <body>
@@ -569,6 +726,7 @@ a   { color:inherit; text-decoration:none; }
           <div class="tw-chev"><span class="ms">expand_more</span></div>
         </div>
         <div class="tw-body">
+          <div class="tw-body-date"><span class="ms">calendar_today</span>Viernes 5 de junio · 14:00 hs.</div>
           <div class="tw-items">
             <div class="tw-item"><span class="ms filled">workspace_premium</span>Presentación del ecosistema Google Workspace y su integración con IA generativa.</div>
             <div class="tw-item"><span class="ms filled">psychology</span>Fluidez en la inteligencia artificial. Formas de interacción con la IA.</div>
@@ -594,6 +752,7 @@ a   { color:inherit; text-decoration:none; }
           <div class="tw-chev"><span class="ms">expand_more</span></div>
         </div>
         <div class="tw-body">
+          <div class="tw-body-date"><span class="ms">calendar_today</span>Viernes 12 de junio · 14:00 hs.</div>
           <div class="tw-items">
             <div class="tw-item"><span class="ms filled">mail</span>Optimización del uso de Gmail: atajos y plantillas de mail y prompts. Gestión de etiquetas. Vinculación con Google Keep y Tasks para trazabilidad de trámites internos.</div>
             <div class="tw-item"><span class="ms filled">edit_document</span>Redacción y edición colaborativa en Google Docs.</div>
@@ -618,6 +777,7 @@ a   { color:inherit; text-decoration:none; }
           <div class="tw-chev"><span class="ms">expand_more</span></div>
         </div>
         <div class="tw-body">
+          <div class="tw-body-date"><span class="ms">calendar_today</span>Viernes 19 de junio · 14:00 hs.</div>
           <div class="tw-items">
             <div class="tw-item"><span class="ms filled">lightbulb</span>Habilidades de descripción, discernimiento y diligencia con la IA.</div>
             <div class="tw-item"><span class="ms filled">auto_awesome</span>Introducción a Gemini como asistente administrativo: redacción de borradores, síntesis de textos y gestión de correos frecuentes.</div>
